@@ -3,7 +3,8 @@ import fs from 'fs';
 export default class ProductManager {
     constructor(path){
         this.products = [];
-        this.path = path
+        this.path = path,
+        this.id = 1
     }
 
     getProduct = async () => {
@@ -30,7 +31,7 @@ export default class ProductManager {
             }
         
         const product = await this.getProduct();
-        if (this.product.some(product => product.code === code)){
+        if (product.some(product => product.code === code)){
             console.log('El codigo ya existe');
                 return
 
