@@ -3,13 +3,13 @@ import fs from 'fs';
 export default class ProductManager {
     constructor(path){
         this.products = [];
-        this.path = './files/productos.txt'
+        this.path = path
     }
 
     getProduct = async () => {
 
         try {
-            if(fs.existsSync(path)){
+            if(fs.existsSync(this.path)){
                 const data =await fs.promises.readFile(this.path, 'utf-8');
                 const product =JSON.parse(data)
                 return product
@@ -52,7 +52,7 @@ export default class ProductManager {
         };
 
         product.push(newProduct);
-        await fs.promises.writeFile(path, JSON.stringify(product, null, '\t'))
+        await fs.promises.writeFile(this.path, JSON.stringify(product, null, '\t'))
         return product;
         
     }
